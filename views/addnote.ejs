@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Note</title>
+    <style type="text/css">
+       .save {
+    background-color: #008CBA; /* Blue */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    margin: 4px 2px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    
+    }
+
+    </style>
+  </head>
+
+  <body>
+     <form method="post" action="/addnote">
+      <div id="textdiv" style="color: green; font-size: 250%; font-family: Bodoni MT Black;">
+      <p align="center"> This is the Add Note Section </p></div>
+     <div id="textdiv" style="color: Black; font-size: 110%; font-family: Bodoni MT Black; " >
+        WHAT'S ON YOUR MIND.............??? <br> <br></div>
+     <textarea name="note" rows="20" cols="60"  placeholder=" Enter Text Here"  style="background-color: #FFDAB9; font-size:100%; font-family:verdana; align:right;" ></textarea><br>
+     <br><br>
+      <button class="save" type="submit" id = "mybutton" onclick="window.location.href='http://localhost:3000/viewnote'" > SAVE </button>
+     </form>
+
+  </body>
+
+</html>
