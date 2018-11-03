@@ -76,22 +76,5 @@ router.get('/deletenote/:id', function(req, res) {
 Notes.findOneAndRemove({_id: req.params.id}, function(err, note) {
 })
 });
-/*
-router.delete('/deletenote/:id', function(req, res) {
 
-    User.Remove({_id: req.params.id }, function(err) {
-        if (!err) {
-            return res.send('User deleted!');
-        } else {
-            return res.send('Error deleting user!');
-        }
-    });
-
-});
-
-router.delete('/deletenote/:id', function(req, res){
-	Notes.findOne({_id: req.params.id}).remove();
-});
-
-*/
 module.exports = router;
