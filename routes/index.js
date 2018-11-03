@@ -31,7 +31,8 @@ router.post('/signup',function(req, res){
   });
 });
 
-router.post('/login', function(req, res) {
+router.post('/login', function(
+	req, res) {
 	if(req.body.username && req.body.password){
 	Users.findOne({
 		username: req.body.username,	
@@ -50,21 +51,24 @@ router.get('/addnote', function(req, res){
 });
 
 router.get('/viewnote', function(req, res){
-	res.render('viewnote');
+	Notes.find().exec(function(err, notes){
+    res.render('viewnote', {notes});
+    //console.log(notes);
+  });
 });
 
 router.post('/addnote', function(req, res) {
-	//console.log('req......', req.body);
-var note = new Notes({
-	note: req.body.note
-})
- var promise = note.save() 
- promise.then((note) => {
- 	console.log('saved note is : ', note);
- 	Notes.find().exec(function(err,notes){
- 		res.render ('viewNote', {notes});
- 		console.log(notes);
- 	});
+	console.log('req......', req.body);
+	 var note = new Notes({
+	 note: req.body.note
+     })
+ 	 var promise = note.save() 
+ 	 promise.then((note) => {
+ 	 console.log('saved note is : ', note);
+	 	Notes.find().exec(function(err,notes){
+	 		res.render ('viewNote', {notes});
+	 		//console.log(notes);
+	 	});
  });
 });
 
@@ -73,8 +77,22 @@ router.post('/viewnote', function(req, res) {
 });
 
 router.get('/deletenote/:id', function(req, res) {
-Notes.findOneAndRemove({_id: req.params.id}, function(err, note) {
-})
+	Notes.findOneAndRemove({_id: req.params.id}, function(err, note) {
+		res.redirect('/viewnote');
+	});
+});
+
+router.get('/editnote/:id', function(req, res) {
+	Notes.findOne({_id: req.params.id}, function(err, note) {
+		console.log('note', note);
+    res.render('editnote', {note});
+  	});
+});
+router.post('/editnote', function(req, res){
+	Notes.findOneAndUpdate({_id: req.body._id}, {$set: req.body}, (err,note) => {
+		console.log('note updated.... ', note);
+		if (!err) res.redirect('/viewnote')
+	});
 });
 
 module.exports = router;

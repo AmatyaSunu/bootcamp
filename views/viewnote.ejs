@@ -45,7 +45,7 @@
 
   <body>
    
-    <% notes.forEach(function(note, i) { %>
+    <% notes. forEach(function(note, i) { %>
     <!--<div id="textdiv" style="color: #1E90FF; font-size: 220%; font-family: Bodoni MT Black; ">
     <p align="center"> This is the View Note Section </p>
     <button class="mybutton" type="submit" id = "mybutton" style="position: absolute; right: 0;"  > SAVE ME</button><br>
@@ -57,11 +57,10 @@
 
     <div class="note">
     <p> <%=note.note %> </p>
-    <button  class= "button1" type="submit" id = "mybutton"> EDIT </button> 
+    <button  class= "button1" type="submit" id = "mybutton" onclick="window.location.href='/editnote/<%=note._id %>'"> EDIT </button> 
     &nbsp;  &nbsp;  &nbsp;
     <button class="button2" type="submit" onclick="window.location.href='/deletenote/<%=note._id %>'">DELETE</a></button>
-    </div>
     <% }) %>
-
+    </div>
   </body>
 </html>
